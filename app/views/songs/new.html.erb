@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-    <% if @songs %>
+
     <%@songs.each do |s|%>
     <tr>
       <td><%=s.artist%></td>
@@ -33,7 +33,6 @@
       </td>
     </tr>
       <%end%>
-      <% end %>
   </tbody>
 </table>
 

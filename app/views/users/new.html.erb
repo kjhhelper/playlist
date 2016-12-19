@@ -8,16 +8,22 @@
   <input type="submit" name="name" value="submit">
 </form>
 <br>
-<% if flash[:errors]%>
+
+<%if flash[:errors]%>
+<%flash[:errors].each do |a|%>
+<p><%=a%></p>
+<% end %>
 <% end %>
 
 <h1>Login</h1>
 <form action="/sessions" method="post">
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
   email<input type="text" name="user[email]" value=""><br>
-  password<input type="text" name="user[password]" value=""><br>
+  password<input type="text" name="user[password]"><br>
   <input type="submit" name="name" value="submit">
 </form>
 
-<% if flash[:danger]%>
+
+<% if flash[:logerrors]%>
+<p><%=flash[:logerrors]%></p>
 <% end %>

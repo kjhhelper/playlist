@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     @user=User.create(user_params)
     if @user.valid?
     session[:user_id]=@user.id
-      redirect_to '/songs'
+      redirect_to '/songs/new'
     else
       flash[:errors] = @user.errors.full_messages
-      redirect_to '/'
+      redirect_to '/main'
     end
   end
 
