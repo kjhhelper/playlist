@@ -1,0 +1,27 @@
+<!-- logout form -->
+<form action="/sessions/<%=current_user.id%>" method="post">
+<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" name="name" value="logout">
+</form>
+
+<a href="/songs">dashboard</a>
+<p>Others who added "<%=@clicked_song.title%> - <%=@clicked_song.artist%>"</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Times added</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%@users.each do |a|%>
+    <tr>
+      <td><a href="/users/<%=a.id%>"><%=a.f_name%></a></td>
+      <td><%=Add.where(song_id:params[:id]).where(user_id:a.id).count%></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

@@ -1,0 +1,30 @@
+<!-- logout form -->
+<form action="/sessions/<%=current_user.id%>" method="post">
+<input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" name="name" value="logout">
+</form>
+<a href="/songs">dashboard</a>
+
+<h3><%=@userf.f_name%>'s playlist</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Artist</th>
+      <th>title</th>
+      <th>times added</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%@songlists.each do |song|%>
+    <tr>
+      <td><%=song.artist%></td>
+      <td><%=song.title%></td>
+      <td><%=Add.where(user_id:@userf.id).where(song_id:song.id).count%></td>
+
+    </tr>
+      <% end %>
+  </tbody>
+</table>
